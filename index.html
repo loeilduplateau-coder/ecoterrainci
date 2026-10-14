@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éco Terrain CI — L'éco ivoirienne, concrètement.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0A1F44;
+  color: #FFFFFF;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== NAVIGATION ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(10, 31, 68, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(247, 127, 0, 0.2);
+}
+.nav-container {
+  max-width: 1200px; margin: 0 auto;
+  padding: 16px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.nav-logo {
+  font-size: 16px; font-weight: 800;
+  color: #FFFFFF; text-decoration: none; letter-spacing: 2px;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: #E0E0E0; text-decoration: none;
+  font-size: 14px; font-weight: 500; transition: color 0.3s;
+}
+.nav-links a:hover { color: #F77F00; }
+.nav-cta {
+  background: #F77F00; color: #FFFFFF !important;
+  padding: 8px 18px; border-radius: 6px; font-weight: 600 !important;
+}
+.nav-cta:hover { background: #E06E00; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; justify-content: center; align-items: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  background: linear-gradient(135deg, #0A1F44 0%, #142B5C 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(247,127,0,0.08) 1.5px, transparent 1.5px);
+  background-size: 32px 32px; pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(247, 127, 0, 0.15);
+  color: #F77F00; padding: 8px 18px; border-radius: 20px;
+  font-size: 13px; font-weight: 600; margin-bottom: 24px;
+  border: 1px solid rgba(247, 127, 0, 0.3);
+}
+.hero-title {
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 900; letter-spacing: 4px;
+  margin-bottom: 16px; color: #FFFFFF;
+}
+.hero-slogan {
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 300; font-style: italic;
+  color: #E0E0E0; margin-bottom: 28px;
+}
+.hero-description {
+  font-size: 16px; color: #B0B8C8;
+  max-width: 600px; margin: 0 auto 40px;
+}
+.hero-buttons {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+
+/* ===== BOUTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 14px 32px; border-radius: 8px;
+  text-decoration: none; font-weight: 600; font-size: 15px;
+  transition: all 0.3s; cursor: pointer; border: none;
+}
+.btn-primary {
+  background: #F77F00; color: #FFFFFF;
+}
+.btn-primary:hover {
+  background: #E06E00; transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(247, 127, 0, 0.3);
+}
+.btn-secondary {
+  background: transparent; color: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.btn-secondary:hover { border-color: #F77F00; color: #F77F00; }
+
+/* ===== SECTIONS ===== */
+.section { padding: 100px 24px; }
+.section-dark { background: #081838; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-label {
+  display: inline-block; color: #F77F00;
+  font-size: 13px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800; color: #FFFFFF; margin-bottom: 12px;
+}
+.section-subtitle {
+  color: #B0B8C8; font-size: 16px;
+  max-width: 600px; margin: 0 auto;
+}
+
+/* ===== À PROPOS ===== */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: start;
+}
+.about-text p {
+  color: #E0E0E0; font-size: 16px;
+  margin-bottom: 18px; line-height: 1.8;
+}
+.about-text strong { color: #F77F00; }
+.about-values { display: flex; flex-direction: column; gap: 16px; }
+.value-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(247, 127, 0, 0.15);
+  border-radius: 12px; padding: 20px; transition: all 0.3s;
+}
+.value-card:hover { border-color: #F77F00; transform: translateX(4px); }
+.value-icon { font-size: 28px; margin-bottom: 8px; }
+.value-card h3 { font-size: 16px; font-weight: 700; color: #FFFFFF; margin-bottom: 4px; }
+.value-card p { font-size: 14px; color: #B0B8C8; }
+
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.service-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px; padding: 32px 28px;
+  transition: all 0.3s; position: relative;
+}
+.service-card:hover {
+  border-color: #F77F00; transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+.service-card-featured {
+  border-color: #F77F00; background: rgba(247, 127, 0, 0.05);
+}
+.service-badge {
+  position: absolute; top: -12px; right: 20px;
+  background: #F77F00; color: #FFFFFF;
+  padding: 4px 12px; border-radius: 12px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.service-icon { font-size: 36px; margin-bottom: 16px; }
+.service-card h3 {
+  font-size: 18px; font-weight: 700;
+  color: #FFFFFF; margin-bottom: 12px;
+}
+.service-card p {
+  font-size: 14px; color: #B0B8C8;
+  margin-bottom: 16px; line-height: 1.7;
+}
+.service-list { list-style: none; padding: 0; }
+.service-list li {
+  font-size: 13px; color: #E0E0E0;
+  padding: 6px 0 6px 20px; position: relative;
+}
+.service-list li::before {
+  content: '→'; position: absolute; left: 0;
+  color: #F77F00; font-weight: 700;
+}
+
+/* ===== ARTICLES ===== */
+.articles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-bottom: 40px;
+}
+.article-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px; padding: 28px 24px;
+  transition: all 0.3s; display: flex; flex-direction: column;
+}
+.article-card:hover { border-color: #F77F00; transform: translateY(-4px); }
+.article-tag {
+  display: inline-block;
+  background: rgba(247, 127, 0, 0.15);
+  color: #F77F00; padding: 4px 12px; border-radius: 12px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 14px; align-self: flex-start;
+}
+.article-card h3 {
+  font-size: 17px; font-weight: 700;
+  color: #FFFFFF; margin-bottom: 10px; line-height: 1.4;
+}
+.article-card p {
+  font-size: 14px; color: #B0B8C8;
+  margin-bottom: 18px; flex: 1;
+}
+.article-link {
+  color: #F77F00; text-decoration: none;
+  font-weight: 600; font-size: 14px; transition: all 0.3s;
+}
+.article-link:hover { color: #E06E00; letter-spacing: 0.5px; }
+.articles-cta { text-align: center; }
+
+/* ===== CONTACT ===== */
+.contact-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-bottom: 60px;
+}
+.contact-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px; padding: 32px 24px;
+  text-align: center; text-decoration: none;
+  color: inherit; transition: all 0.3s; display: block;
+}
+.contact-card:hover {
+  border-color: #F77F00; transform: translateY(-4px);
+  background: rgba(247, 127, 0, 0.05);
+}
+.contact-icon { font-size: 36px; margin-bottom: 12px; }
+.contact-card h3 {
+  font-size: 16px; font-weight: 700;
+  color: #FFFFFF; margin-bottom: 6px;
+}
+.contact-card p { font-size: 14px; color: #B0B8C8; }
+.qr-section { text-align: center; }
+.qr-code {
+  width: 180px; height: 180px;
+  background: #FFFFFF; padding: 12px;
+  border-radius: 12px; margin-bottom: 12px;
+}
+.qr-label { font-size: 13px; color: #B0B8C8; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #05102A; padding: 60px 24px 30px;
+  border-top: 1px solid rgba(247, 127, 0, 0.2);
+}
+.footer-content {
+  display: flex; justify-content: space-between;
+  align-items: start; flex-wrap: wrap;
+  gap: 32px; margin-bottom: 40px;
+}
+.footer-logo {
+  font-size: 18px; font-weight: 800;
+  letter-spacing: 2px; color: #FFFFFF; margin-bottom: 8px;
+}
+.footer-slogan {
+  font-size: 13px; color: #B0B8C8; font-style: italic;
+}
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a {
+  color: #B0B8C8; text-decoration: none;
+  font-size: 14px; transition: color 0.3s;
+}
+.footer-links a:hover { color: #F77F00; }
+.footer-bottom {
+  text-align: center; padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.footer-bottom p { font-size: 13px; color: #8A94A6; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid, .articles-grid, .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-container { justify-content: center; }
+  .section { padding: 70px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 300px; text-align: center; }
+  .footer-content { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="#accueil" class="nav-logo">ÉCO TERRAIN CI</a>
+    <ul class="nav-links">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="accueil" class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🇨🇮 Côte d'Ivoire</div>
+    <h1 class="hero-title">ÉCO TERRAIN CI</h1>
+    <p class="hero-slogan">L'éco ivoirienne, concrètement.</p>
+    <p class="hero-description">
+      Analyses économiques terrain, formations Excel & Power Query, consulting pour petits commerces.
+      Comprendre. Mesurer. Agir.
+    </p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn btn-primary">Découvrir mes services</a>
+      <a href="https://wa.me/2250501944661" class="btn btn-secondary" target="_blank">Me contacter sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="apropos" class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">À propos</span>
+      <h2 class="section-title">Qui suis-je ?</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Je suis <strong>Mariam Noura Touré</strong>, étudiante en 2ᵉ année de sciences économiques et de gestion, et fondatrice d'<strong>Éco Terrain CI</strong>.</p>
+        <p>Mon objectif : rendre l'économie et la gestion ivoiriennes accessibles à tous, à travers des cas concrets du terrain. Pas de théorie abstraite — des chiffres réels, des commerces réels, des solutions réelles.</p>
+        <p>Chaque semaine, j'analyse un sujet économique ou de gestion, et je montre comment utiliser des outils numériques simples (Excel, Power Query, mobile money) pour comprendre, mesurer et agir.</p>
+      </div>
+      <div class="about-values">
+        <div class="value-card">
+          <div class="value-icon">📊</div>
+          <h3>Analyses terrain</h3>
+          <p>Des cas concrets ivoiriens, pas de théorie vague.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💻</div>
+          <h3>Outils simples</h3>
+          <p>Excel, Power Query, mobile money — accessibles à tous.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🎓</div>
+          <h3>Formations pratiques</h3>
+          <p>Apprendre en faisant, avec des exemples locaux.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">Ce que je propose</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h3>Analyses économiques</h3>
+        <p>Décryptage de l'économie ivoirienne à partir de cas concrets : marchés, commerces, PME, inflation, pouvoir d'achat.</p>
+        <ul class="service-list">
+          <li>Articles hebdomadaires</li>
+          <li>Études de cas terrain</li>
+          <li>Données sourcées et vérifiées</li>
+        </ul>
+      </div>
+      <div class="service-card service-card-featured">
+        <div class="service-badge">Populaire</div>
+        <div class="service-icon">💻</div>
+        <h3>Formations Excel & Power Query</h3>
+        <p>Apprenez à utiliser les outils numériques pour gérer votre commerce, calculer vos marges et automatiser vos rapports.</p>
+        <ul class="service-list">
+          <li>Excel pour petits commerces</li>
+          <li>Power Query : nettoyer ses données</li>
+          <li>Tableaux de bord simples</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Consulting petits commerces</h3>
+        <p>Accompagnement personnalisé pour structurer la gestion de votre activité et améliorer votre rentabilité.</p>
+        <ul class="service-list">
+          <li>Calcul de marge et seuil de rentabilité</li>
+          <li>Structuration de la comptabilité</li>
+          <li>Outils de suivi personnalisés</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="articles" class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Articles</span>
+      <h2 class="section-title">Dernières analyses</h2>
+    </div>
+    <div class="articles-grid">
+      <article class="article-card">
+        <div class="article-tag">Économie</div>
+        <h3>Combien gagne vraiment une vendeuse de garba à Abidjan ?</h3>
+        <p>J'ai calculé sa marge réelle avec Google Sheets. Le résultat m'a surprise.</p>
+        <a href="#" class="article-link">Lire l'article →</a>
+      </article>
+      <article class="article-card">
+        <div class="article-tag">Gestion</div>
+        <h3>Pourquoi 80 % des petits commerces ivoiriens ne survivent pas 3 ans</h3>
+        <p>Le cahier de comptes est l'erreur qui coûte le plus cher aux commerçants.</p>
+        <a href="#" class="article-link">Lire l'article →</a>
+      </article>
+      <article class="article-card">
+        <div class="article-tag">Informatique</div>
+        <h3>5 formules Excel qui remplacent un comptable pour un petit commerce</h3>
+        <p>Des formules simples, accessibles, qui changent la gestion au quotidien.</p>
+        <a href="#" class="article-link">Lire l'article →</a>
+      </article>
+    </div>
+    <div class="articles-cta">
+      <a href="#" class="btn btn-primary">Voir tous les articles</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Travaillons ensemble</h2>
+      <p class="section-subtitle">Une question, un projet, une formation ? Écris-moi.</p>
+    </div>
+    <div class="contact-grid">
+      <a href="https://wa.me/2250501944661" class="contact-card" target="_blank">
+        <div class="contact-icon">📱</div>
+        <h3>WhatsApp</h3>
+        <p>05 01 94 46 61</p>
+      </a>
+      <a href="mailto:contact@ecoterrainci.com" class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <h3>Email</h3>
+        <p>contact@ecoterrainci.com</p>
+      </a>
+      <a href="https://facebook.com/ecoterrainci" class="contact-card" target="_blank">
+        <div class="contact-icon">🌐</div>
+        <h3>Facebook</h3>
+        <p>facebook.com/ecoterrainci</p>
+      </a>
+    </div>
+    <div class="qr-section">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://facebook.com/ecoterrainci" alt="QR Code Facebook Éco Terrain CI" class="qr-code">
+      <p class="qr-label">Scannez pour suivre la page Facebook</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">ÉCO TERRAIN CI</div>
+        <p class="footer-slogan">L'éco ivoirienne, concrètement.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#services">Services</a>
+        <a href="#articles">Articles</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Éco Terrain CI — Mariam Noura Touré. Cocody, Abidjan, Côte d'Ivoire.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
